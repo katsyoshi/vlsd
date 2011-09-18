@@ -1,5 +1,5 @@
 EAPI=4
-WANT_ANT_TASKS="ant-nodeps"
+ANT_TASKS="ant"
 DESPCRIPTION=""
 inherit subversion java-pkg-2 java-ant-2
 
@@ -18,6 +18,9 @@ DEPEND=">=virtual/jdk-1.6"
 S="${WORKDIR}/${PV}"
 
 src_compile() {
-	eant
-	# eant -Djavac.args="-encoding UTF-8" -Djava6.home=${JAVA_HOME}
+	unset ANT_OPTS
+	# echo "${ANT_OPTS}"
+	# eant || die "eant is failed"
+	eant -Djavac.args="-includeantruntime=false -encoding UTF-8" \
+		 -Djava6.home=${JAVA_HOME} || die
 }

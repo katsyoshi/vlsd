@@ -1,0 +1,20 @@
+Index: build.xml
+===================================================================
+--- build.xml	(revision 640)
++++ build.xml	(working copy)
+@@ -56,12 +56,12 @@
+           target: compile                      
+          - - - - - - - - - - - - - - - - - -->
+     <target name="compile" depends="init">
+-    	<javac srcdir="src" destdir="build">
++    	<javac inculdeAntRuntime="true" srcdir="src" destdir="build">
+     		<classpath refid="vlsd.classpath"/>
+    		</javac>
+-    	<javac srcdir="test" destdir="build">
++ <!--   	<javac srcdir="test" destdir="build">
+     		<classpath refid="vlsd.classpath"/>
+-   		</javac>
++   		</javac> -->
+     </target>
+ 
+     <!-- - - - - - - - - - - - - - - - - - 
