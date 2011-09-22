@@ -1,6 +1,6 @@
 EAPI=4
 ANT_TASKS="ant"
-DESPCRIPTION=""
+DESPCRIPTION="Virtual Large Scale Disk"
 inherit subversion java-pkg-2 java-ant-2
 
 ESVN_REPO_URI="http://svn.sourceforge.jp/svnroot/vlsd/vlsd"
@@ -19,8 +19,10 @@ S="${WORKDIR}/${PV}"
 
 src_compile() {
 	unset ANT_OPTS
-	# echo "${ANT_OPTS}"
-	# eant || die "eant is failed"
-	eant -Djavac.args="-includeantruntime=false -encoding UTF-8" \
-		 -Djava6.home=${JAVA_HOME} || die
+	eant jar || die
+}
+
+src_install() {
+	java-pkg_dojar vlsd.jar
+	# cp vlsd.jar "${D}/usr/share/" install || die
 }
